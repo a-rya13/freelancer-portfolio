@@ -10,8 +10,8 @@ export default function TechBadge({ name }: TechBadgeProps) {
       items-center
       rounded-full
       border
-      border-zinc-200
-      bg-white
+      border-border
+      bg-card
       px-3
       py-1.5
       text-sm

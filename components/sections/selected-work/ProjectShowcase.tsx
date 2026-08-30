@@ -52,14 +52,15 @@ export default function ProjectShowcase({
         once: true,
         amount: 0.2,
       }}
-      className="py-28"
+      className="py-16 sm:py-20 lg:py-28"
     >
       <div
         className={`
           grid
           items-center
-          gap-20
+          gap-10
           lg:grid-cols-2
+          lg:gap-20
           ${reverse ? "lg:[&>*:first-child]:order-2" : ""}
         `}
       >
@@ -84,10 +85,11 @@ export default function ProjectShowcase({
             variants={fadeUp}
             className="
               font-heading
-              text-4xl
+              text-3xl
               font-semibold
               leading-tight
               text-zinc-950
+              sm:text-4xl
               md:text-5xl
             "
           >
@@ -198,8 +200,8 @@ export default function ProjectShowcase({
               overflow-hidden
               rounded-[28px]
               border
-              border-zinc-200
-              bg-white
+              border-border
+              bg-card
               shadow-[0_20px_80px_rgba(0,0,0,0.08)]
             "
           >
@@ -211,8 +213,8 @@ export default function ProjectShowcase({
                 items-center
                 gap-2
                 border-b
-                border-zinc-200
-                bg-zinc-50
+                border-border
+                bg-subtle
                 px-5
                 py-4
               "
@@ -255,8 +257,8 @@ export default function ProjectShowcase({
               w-full
               rounded-[32px]
               border
-              border-zinc-100
-              bg-zinc-50/60
+              border-border
+              bg-subtle/60
             "
           />
         </motion.div>

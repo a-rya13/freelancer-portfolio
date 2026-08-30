@@ -19,15 +19,14 @@ export interface ProjectMetrics {
   value: string;
 }
 
-export interface ProjectSection {
-  title: string;
-  content: string;
-}
+export type ProjectStatus = "ongoing" | "completed";
 
 export interface Project {
   slug: string;
 
   title: string;
+
+  status: ProjectStatus;
 
   category: string;
 
@@ -62,6 +61,4 @@ export interface Project {
   features: string[];
 
   metrics: ProjectMetrics[];
-
-  sections: ProjectSection[];
 }

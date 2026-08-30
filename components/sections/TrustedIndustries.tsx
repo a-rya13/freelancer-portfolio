@@ -19,12 +19,12 @@ const industries = [
 
 export default function TrustedIndustries() {
   return (
-    <section className="py-20">
+    <section className="py-14 sm:py-20">
       <Container>
         <SectionHeading
           badge="Industries"
-          title="Industries I've Built For"
-          description="From local businesses to scalable digital platforms, every project is designed with performance, usability, and business growth in mind."
+          title="Small Businesses I've Helped Grow"
+          description="From local businesses to scalable digital platforms, every project is designed with performance, usability, and fast, measurable growth in mind."
         />
 
         <motion.div
@@ -32,7 +32,7 @@ export default function TrustedIndustries() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-14 flex flex-wrap gap-4"
+          className="mt-10 flex flex-wrap gap-3 sm:mt-14 sm:gap-4"
         >
           {industries.map((industry) => (
             <motion.div
@@ -45,7 +45,7 @@ export default function TrustedIndustries() {
                 type: "spring",
                 stiffness: 250,
               }}
-              className="rounded-full border border-zinc-200 bg-white px-6 py-3 text-sm font-medium text-zinc-700 shadow-sm transition-all hover:border-black hover:text-black hover:shadow-md"
+              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm transition-all hover:border-black hover:text-black hover:shadow-md sm:px-6 sm:py-3"
             >
               {industry}
             </motion.div>

@@ -27,8 +27,8 @@ const fadeUp = {
 
 export default function CaseStudyHero({ project }: Props) {
   return (
-    <section className="pt-40 pb-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -39,20 +39,20 @@ export default function CaseStudyHero({ project }: Props) {
             {project.category}
           </p>
 
-          <h1 className="mt-6 font-heading text-5xl font-semibold leading-tight text-zinc-950 md:text-7xl">
+          <h1 className="mt-5 font-heading text-4xl font-semibold leading-tight text-zinc-950 sm:mt-6 sm:text-5xl md:text-7xl">
             {project.title}
           </h1>
 
-          <p className="mt-8 max-w-3xl text-xl leading-9 text-zinc-600">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 sm:mt-8 sm:text-xl sm:leading-9">
             {project.tagline}
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
             {project.links.live && (
               <Link
                 href={project.links.live}
                 target="_blank"
-                className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 font-medium text-white transition hover:bg-zinc-800"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 font-medium text-white transition hover:bg-zinc-800"
               >
                 Visit Website
                 <ArrowUpRight size={18} />
@@ -61,7 +61,7 @@ export default function CaseStudyHero({ project }: Props) {
 
             <Link
               href="/#work"
-              className="inline-flex items-center rounded-full border border-zinc-300 px-6 py-3 font-medium transition hover:border-black"
+              className="inline-flex items-center justify-center rounded-full border border-zinc-300 px-6 py-3 font-medium transition hover:border-black"
             >
               Back to Projects
             </Link>
@@ -75,21 +75,21 @@ export default function CaseStudyHero({ project }: Props) {
           transition={{
             delay: 0.2,
           }}
-          className="mt-20 overflow-hidden rounded-[36px] border border-zinc-200 bg-white shadow-[0_30px_90px_rgba(0,0,0,0.08)]"
+          className="mt-12 overflow-hidden rounded-[24px] border border-border bg-card shadow-[0_30px_90px_rgba(0,0,0,0.08)] sm:mt-16 sm:rounded-[36px] md:mt-20"
         >
-          <div className="flex items-center gap-2 border-b border-zinc-200 bg-zinc-50 px-5 py-4">
+          <div className="flex items-center gap-2 border-b border-border bg-subtle px-5 py-4">
             <span className="h-3 w-3 rounded-full bg-red-400" />
             <span className="h-3 w-3 rounded-full bg-yellow-400" />
             <span className="h-3 w-3 rounded-full bg-green-400" />
           </div>
 
-          <div className="p-6">
+          <div className="p-3 sm:p-6">
             <Image
               src={project.cover.src}
               alt={project.cover.alt}
               width={1600}
               height={900}
-              className="w-full rounded-2xl border border-zinc-200"
+              className="w-full rounded-2xl border border-border"
               priority
             />
           </div>

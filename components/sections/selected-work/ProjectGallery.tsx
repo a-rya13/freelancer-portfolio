@@ -31,17 +31,19 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
               className={`
                 rounded-full
                 border
-                px-4
-                py-2
+                px-3
+                py-1.5
                 text-sm
                 font-medium
                 transition-all
                 duration-300
+                sm:px-4
+                sm:py-2
 
                 ${
                   activeImage === index
                     ? "border-zinc-900 bg-zinc-900 text-white"
-                    : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400"
+                    : "border-border bg-card text-zinc-600 hover:border-zinc-400"
                 }
               `}
             >
@@ -58,8 +60,8 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
           overflow-hidden
           rounded-[32px]
           border
-          border-zinc-200
-          bg-white
+          border-border
+          bg-card
           shadow-[0_30px_80px_rgba(0,0,0,0.08)]
         "
       >
@@ -71,8 +73,8 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
             items-center
             gap-2
             border-b
-            border-zinc-200
-            bg-zinc-50
+            border-border
+            bg-subtle
             px-5
             py-4
           "
@@ -84,7 +86,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
 
         {/* Screenshot */}
 
-        <div className="overflow-hidden bg-white p-4 md:p-6">
+        <div className="overflow-hidden bg-card p-4 md:p-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeImage}
@@ -119,7 +121,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
                   w-full
                   rounded-2xl
                   border
-                  border-zinc-100
+                  border-border
                   object-cover
                   transition-transform
                   duration-700

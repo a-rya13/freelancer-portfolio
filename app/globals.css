@@ -1,20 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #111111;
+  --background: #f2efe9;
+  --foreground: #1c1a17;
 
-  --muted: #71717a;
+  --muted: #78716c;
 
-  --border: #e4e4e7;
+  --border: #ddd6c8;
 
-  --card: #ffffff;
+  --card: #fbf9f5;
+
+  --subtle: #eae5dc;
 
   --radius: 24px;
 
   --font-heading: var(--font-space);
 
   --font-body: var(--font-inter);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
 }
 
 html {
@@ -52,4 +63,31 @@ h6 {
 ::selection {
   background: black;
   color: white;
+}
+
+.typing-caret {
+  display: inline-block;
+  width: 0.06em;
+  margin-left: 0.05em;
+  height: 0.85em;
+  background: currentColor;
+  vertical-align: -0.1em;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

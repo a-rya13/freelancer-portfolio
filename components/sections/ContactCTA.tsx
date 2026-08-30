@@ -20,8 +20,8 @@ const fadeUp = {
 
 export default function ContactCTA() {
   return (
-    <section id="contact" className="py-36">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="contact" className="py-20 sm:py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -29,40 +29,47 @@ export default function ContactCTA() {
           viewport={{ once: true }}
           className="
             overflow-hidden
-            rounded-[40px]
+            rounded-[28px]
             border
-            border-zinc-200
+            border-border
             bg-zinc-950
-            px-8
-            py-20
+            px-6
+            py-14
             text-center
             text-white
+            sm:rounded-[40px]
+            sm:px-10
+            sm:py-16
             md:px-20
+            md:py-20
           "
         >
           <p className="text-sm font-medium uppercase tracking-[0.25em] text-zinc-400">
-            Let's Build
+            Let&apos;s Build
           </p>
 
-          <h2 className="mx-auto mt-6 max-w-4xl font-heading text-5xl font-semibold leading-tight md:text-6xl">
-            Have an idea worth building?
+          <h2 className="mx-auto mt-5 max-w-4xl font-heading text-3xl font-semibold leading-tight sm:mt-6 sm:text-4xl md:text-6xl">
+            Ready to grow your small business online?
           </h2>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-zinc-300">
-            Whether you're launching a startup, improving an existing product,
-            or building a completely new digital experience, I'd love to help
-            turn your vision into something people enjoy using.
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-zinc-300 sm:mt-8 sm:text-lg sm:leading-8">
+            Whether you&apos;re launching, improving an existing product, or
+            building a completely new digital experience, I&apos;d love to help
+            you respond faster, look more credible, and turn your vision into
+            steady growth.
           </p>
 
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-5">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:gap-5">
             <Link
               href="mailto:hello@aryabuilds.dev"
               className="
                 inline-flex
+                w-full
                 items-center
+                justify-center
                 gap-2
                 rounded-full
-                bg-white
+                bg-card
                 px-7
                 py-4
                 font-medium
@@ -70,6 +77,7 @@ export default function ContactCTA() {
                 transition-all
                 duration-300
                 hover:scale-[1.03]
+                sm:w-auto
               "
             >
               Start a Project
@@ -81,7 +89,9 @@ export default function ContactCTA() {
               target="_blank"
               className="
                 inline-flex
+                w-full
                 items-center
+                justify-center
                 rounded-full
                 border
                 border-zinc-700
@@ -92,6 +102,7 @@ export default function ContactCTA() {
                 transition-all
                 duration-300
                 hover:border-white
+                sm:w-auto
               "
             >
               Book a Call

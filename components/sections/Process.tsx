@@ -57,8 +57,8 @@ const fadeUp = {
 
 export default function Process() {
   return (
-    <section id="process" className="py-36">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="process" className="py-20 sm:py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -70,20 +70,20 @@ export default function Process() {
             Process
           </p>
 
-          <h2 className="mt-5 font-heading text-5xl font-semibold leading-tight text-zinc-950 md:text-6xl">
+          <h2 className="mt-5 font-heading text-4xl font-semibold leading-tight text-zinc-950 sm:text-5xl md:text-6xl">
             A process designed
             <br />
             for clarity and results.
           </h2>
 
-          <p className="mt-8 text-lg leading-8 text-zinc-600">
+          <p className="mt-6 text-base leading-7 text-zinc-600 sm:mt-8 sm:text-lg sm:leading-8">
             Every project follows a structured workflow that keeps communication
             transparent, reduces uncertainty, and delivers products that are
             built to scale.
           </p>
         </motion.div>
 
-        <div className="mt-24 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:mt-16 sm:gap-8 md:mt-24 md:grid-cols-2 xl:grid-cols-3">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -94,17 +94,19 @@ export default function Process() {
               transition={{
                 delay: index * 0.08,
               }}
-              className="group rounded-[32px] border border-zinc-200 bg-white p-10 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-900 hover:shadow-xl"
+              className="group rounded-[24px] border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-900 hover:shadow-xl sm:rounded-[32px] sm:p-8 md:p-10"
             >
               <span className="text-sm font-semibold tracking-[0.2em] text-zinc-400">
                 {step.number}
               </span>
 
-              <h3 className="mt-5 text-2xl font-semibold text-zinc-950">
+              <h3 className="mt-4 text-xl font-semibold text-zinc-950 sm:mt-5 sm:text-2xl">
                 {step.title}
               </h3>
 
-              <p className="mt-5 leading-8 text-zinc-600">{step.description}</p>
+              <p className="mt-4 leading-7 text-zinc-600 sm:mt-5 sm:leading-8">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>
