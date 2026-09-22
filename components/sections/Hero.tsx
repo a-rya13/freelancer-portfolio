@@ -5,244 +5,250 @@ import { useRef } from "react";
 import {
   motion,
   useMotionValue,
-  useSpring,
+  useReducedMotion,
+  useScroll,
   useTransform,
 } from "framer-motion";
-import { ArrowRight, TrendingUp } from "lucide-react";
 
-import TypingText from "@/components/common/TypingText";
-import AnimatedCounter from "@/components/common/AnimatedCounter";
+import Navbar from "@/components/layout/Navbar";
 
-const growthBars = [35, 55, 45, 70, 60, 90, 100];
+interface HeroProps {
+  staticHero?: boolean;
+}
 
-export default function Hero() {
-  const cardRef = useRef<HTMLDivElement>(null);
+const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
+const ease = (t: number) => t * t * (3 - 2 * t);
 
-  const rotateX = useSpring(
-    useTransform(pointerY, [-0.5, 0.5], [8, -8]),
-    { stiffness: 200, damping: 20 }
+const seg = (p: number, a: number, b: number) => clamp01((p - a) / (b - a));
+
+const scrub = (p: number, a: number, b: number, from: number, to: number) =>
+  from + (to - from) * ease(seg(p, a, b));
+
+export default function Hero({ staticHero = false }: HeroProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const isStatic = staticHero || Boolean(prefersReducedMotion);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  const staticProgress = useMotionValue(1);
+  const progress = isStatic ? staticProgress : scrollYProgress;
+
+  const cam = useTransform(progress, (p) => scrub(p, 0.02, 0.9, 1.1, 1));
+  const bright = useTransform(progress, (p) => scrub(p, 0.06, 0.78, 0.3, 1));
+  const glow = useTransform(progress, (p) => scrub(p, 0.34, 0.9, 0, 1));
+  const ghostOp = useTransform(progress, (p) => scrub(p, 0.74, 0.98, 0, 1));
+  const teaserOp = useTransform(progress, (p) => scrub(p, 0.03, 0.4, 1, 0));
+  const teaserY = useTransform(
+    progress,
+    (p) => `${scrub(p, 0.03, 0.4, 0, -26)}px`
   );
-  const rotateY = useSpring(
-    useTransform(pointerX, [-0.5, 0.5], [-8, 8]),
-    { stiffness: 200, damping: 20 }
+  const payoffOp = useTransform(progress, (p) => scrub(p, 0.2, 0.62, 0, 1));
+  const payoffY = useTransform(
+    progress,
+    (p) => `${scrub(p, 0.2, 0.62, 26, 0)}px`
   );
+  const cueOp = useTransform(progress, (p) => scrub(p, 0, 0.12, 1, 0));
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse") return;
-    const card = cardRef.current;
-    if (!card) return;
-
-    const bounds = card.getBoundingClientRect();
-    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
-    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
-  };
-
-  const handlePointerLeave = () => {
-    pointerX.set(0);
-    pointerY.set(0);
+  const cssVars = {
+    "--cam": cam,
+    "--bright": bright,
+    "--glow": glow,
+    "--ghostOp": ghostOp,
+    "--teaserOp": teaserOp,
+    "--teaserY": teaserY,
+    "--payoffOp": payoffOp,
+    "--payoffY": payoffY,
+    "--cueOp": cueOp,
   };
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-950 to-background pt-28 pb-16 lg:pt-24 lg:pb-0">
-      {/* Ambient glow */}
-      <div className="absolute left-1/2 top-0 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[100px] sm:h-[500px] sm:w-[500px] sm:blur-[130px]" />
-
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse items-center justify-between gap-12 px-5 sm:gap-16 sm:px-6 lg:flex-row">
-        {/* LEFT CONTENT */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-3xl text-center lg:text-left"
-        >
-          <span className="inline-flex rounded-full border border-zinc-700 bg-zinc-900/60 px-4 py-2 text-xs font-medium text-zinc-300 shadow-sm backdrop-blur sm:px-5 sm:text-sm">
-            Digital Growth Partner • Web • CRM • Growth
-          </span>
-
-          <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-white sm:mt-8 sm:text-5xl sm:leading-[1] md:text-6xl md:leading-[0.95] lg:text-7xl xl:text-8xl">
-            <span className="block">We Build.</span>
-            <span className="block font-mono text-emerald-400">
-              <TypingText
-                words={["<You Grow.>", "<You Scale.>", "<You Convert.>", "<You Win.>"]}
-              />
-            </span>
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-zinc-400 sm:mt-8 sm:text-lg sm:leading-8 lg:mx-0">
-            I partner with small businesses to build fast, conversion-focused
-            websites, CRMs, and growth systems — so you respond to leads
-            quicker, look more credible online, and grow without the overhead
-            of a full agency.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
-            <a
-              href="#work"
-              className="group rounded-full bg-card px-8 py-4 text-center font-medium text-black transition-all duration-300 hover:scale-105 hover:bg-zinc-200"
+    <section ref={sectionRef} className="relative h-[340vh]">
+      <motion.div
+        className="sticky top-0 h-screen w-full overflow-hidden bg-[#08080A]"
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        style={cssVars as any}
+      >
+        <div className="grid h-full w-full place-items-center">
+          <div
+            className="relative aspect-video will-change-transform"
+            style={{
+              width: "max(100%, 177.8vh)",
+              transform: "scale(var(--cam))",
+              transformOrigin: "44% 28%",
+            }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                filter:
+                  "brightness(var(--bright)) contrast(1.14) saturate(.92)",
+                willChange: "filter",
+              }}
             >
-              View Selected Work
-            </a>
-
-            <a
-              href="#contact"
-              className="group flex items-center justify-center gap-2 rounded-full border border-zinc-700 bg-transparent px-8 py-4 font-medium text-white transition-all duration-300 hover:border-white hover:bg-white/5"
-            >
-              Let&apos;s Build
-              <ArrowRight
-                size={18}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </a>
-          </div>
-
-          <div className="mt-10 flex items-center justify-center gap-3 lg:justify-start">
-            <div className="h-10 w-10 overflow-hidden rounded-full border border-zinc-700">
               <Image
-                src="/images/profile/profile.png"
-                alt="Arya Agarwal"
-                width={40}
-                height={40}
-                className="h-full w-full object-cover"
+                src="/images/hero/desk-a.png"
+                alt="Two monitors and a laptop on a desk in a dim room"
+                fill
+                priority
+                sizes="100vw"
+                style={{ objectFit: "cover" }}
+              />
+              <Image
+                src="/images/hero/desk-b.png"
+                alt="Dual-monitor workstation lit by warm accent lighting"
+                fill
+                sizes="100vw"
+                style={{ objectFit: "cover", filter: "brightness(1.9)" }}
+                className="hero-photo-b"
               />
             </div>
-            <p className="text-sm text-zinc-400">
-              <span className="font-medium text-zinc-200">Arya Agarwal</span> —
-              Digital Growth Partner
-            </p>
-          </div>
-        </motion.div>
 
-        {/* RIGHT CONTENT — growth dashboard reveal */}
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9 }}
-          className="relative mx-auto w-full max-w-[260px] sm:max-w-sm md:max-w-md lg:mx-0"
-          style={{ perspective: 1200 }}
-        >
-          {/* Back-most glow */}
-          <div className="absolute inset-0 rounded-[40px] bg-emerald-500/10 blur-2xl sm:blur-3xl" />
-
-          {/* Unveil flash — glow pulse timed to the cover fully lifting away */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: [0, 0.9, 0], scale: [0.85, 1.15, 1] }}
-            transition={{ duration: 0.7, delay: 1.9, ease: "easeOut" }}
-            className="pointer-events-none absolute inset-0 rounded-[40px] bg-emerald-400/30 blur-3xl"
-          />
-
-          {/* Neon cross accent — cinematic beat behind the reveal, homage to the reference */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: [0, 1, 0], scaleX: [0, 1, 1] }}
-            transition={{ duration: 0.8, delay: 1.9, ease: "easeOut" }}
-            className="pointer-events-none absolute left-1/2 top-1/2 h-px w-[140%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-emerald-300/80 to-transparent shadow-[0_0_16px_2px_rgba(52,211,153,0.6)]"
-          />
-          <motion.div
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={{ opacity: [0, 1, 0], scaleY: [0, 1, 1] }}
-            transition={{ duration: 0.8, delay: 1.9, ease: "easeOut" }}
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[140%] w-px -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-transparent via-emerald-300/80 to-transparent shadow-[0_0_16px_2px_rgba(52,211,153,0.6)]"
-          />
-
-          <motion.div
-            ref={cardRef}
-            onPointerMove={handlePointerMove}
-            onPointerLeave={handlePointerLeave}
-            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-            className="relative"
-          >
-            {/* Diagonal light streak — the closing sweep of the reveal beam */}
-            <motion.div
-              initial={{ opacity: 0, x: "-70%" }}
-              animate={{ opacity: [0, 1, 0], x: ["-70%", "70%"] }}
-              transition={{ duration: 0.9, delay: 1.9, ease: "easeInOut" }}
-              className="pointer-events-none absolute -inset-y-10 left-1/2 z-30 w-1/3 -translate-x-1/2 rotate-12 bg-gradient-to-r from-transparent via-emerald-300/70 to-transparent blur-md"
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(circle at 42% 24%, rgba(255,214,150,.34), transparent 60%), radial-gradient(circle at 72% 34%, rgba(255,214,150,.2), transparent 60%)",
+                mixBlendMode: "screen",
+                opacity: "var(--glow)",
+              }}
             />
 
-            {/* Device frame */}
-            <div className="relative overflow-hidden rounded-[28px] border border-zinc-800 bg-zinc-900 shadow-2xl shadow-emerald-500/10 sm:rounded-[32px]">
-              {/* Reveal curtain — the cover pulling back, cinematic pace */}
-              <motion.div
-                initial={{ y: "0%" }}
-                animate={{ y: "-105%" }}
-                transition={{ duration: 1.1, delay: 0.9, ease: [0.76, 0, 0.24, 1] }}
-                className="absolute inset-0 z-20 bg-zinc-950"
-              >
-                {/* Rim light riding the trailing edge as it lifts */}
-                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent shadow-[0_0_20px_4px_rgba(52,211,153,0.8)]" />
-              </motion.div>
+            <div
+              className="font-heading pointer-events-none absolute font-bold leading-none"
+              style={{
+                right: "4%",
+                top: "8%",
+                fontSize: "clamp(120px, 20vw, 340px)",
+                color: "rgba(255,255,255,.07)",
+                opacity: "var(--ghostOp)",
+              }}
+            >
+              05
+            </div>
+          </div>
+        </div>
 
-              {/* Top bar */}
-              <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-900/80 px-5 py-4">
-                <span className="h-3 w-3 rounded-full bg-red-400/70" />
-                <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
-                <span className="h-3 w-3 rounded-full bg-emerald-400/70" />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 38%, transparent 32%, rgba(0,0,0,.82))",
+          }}
+        />
+
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(8,8,10,.85) 0%, transparent 22%, transparent 48%, rgba(8,8,10,.92) 100%)",
+          }}
+        />
+
+        <Navbar />
+
+        <div className="pointer-events-none absolute right-5 bottom-14 left-5 z-[5] sm:right-6 sm:left-6 md:right-[40px] md:bottom-[72px] md:left-[40px]">
+          <div className="relative min-h-[260px] sm:min-h-[230px]">
+            {/* TEASER */}
+            <div
+              className="absolute bottom-0 left-0 max-w-[620px]"
+              style={{
+                opacity: "var(--teaserOp)",
+                transform: "translateY(var(--teaserY))",
+              }}
+            >
+              <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
+                <span className="h-px w-[26px] bg-amber" />
+                Digital Growth Partner
               </div>
 
-              {/* Dashboard content */}
-              <div className="p-5 sm:p-6">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 sm:text-xs">
-                  Client Growth Dashboard
-                </p>
+              <h1 className="font-heading mt-5 text-[clamp(40px,5.6vw,76px)] font-semibold leading-[0.98] tracking-[-0.035em] text-text">
+                Most growth
+                <br />
+                is guesswork.
+              </h1>
+            </div>
 
-                <div className="mt-4 flex items-end justify-between">
-                  <div>
-                    <p className="text-xs text-zinc-500">Businesses Growing</p>
-                    <AnimatedCounter
-                      to={120}
-                      suffix="+"
-                      keepGrowing
-                      className="text-3xl font-bold text-white sm:text-4xl"
-                    />
-                  </div>
+            {/* PAYOFF */}
+            <div
+              className="absolute bottom-0 left-0 max-w-[760px]"
+              style={{
+                opacity: "var(--payoffOp)",
+                transform: "translateY(var(--payoffY))",
+              }}
+            >
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
+                The growth stack, uncovered
+              </p>
 
-                  <TrendingUp className="text-emerald-400" size={26} />
+              <h1 className="font-heading mt-5 text-[clamp(40px,5.6vw,76px)] font-semibold leading-[0.98] tracking-[-0.035em] text-text">
+                Research. Rank. <span className="text-amber">Results.</span>
+              </h1>
+
+              <div className="pointer-events-auto mt-[30px] flex flex-wrap items-center gap-[30px]">
+                <a
+                  href="#contact"
+                  className="rounded-full bg-amber px-[26px] py-[15px] font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-[#100C04] transition-colors hover:bg-amber-hover"
+                >
+                  Start a project
+                </a>
+
+                <div>
+                  <p className="text-[22px] font-semibold text-text">
+                    10+ projects
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
+                    Delivered end to end
+                  </p>
                 </div>
 
-                <div className="mt-6 flex h-20 items-end gap-1.5 sm:h-24 sm:gap-2">
-                  {growthBars.map((height, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ scaleY: 0.2 }}
-                      animate={{ scaleY: [0.25, 1, 0.7, 1] }}
-                      transition={{
-                        duration: 2.6,
-                        repeat: Infinity,
-                        repeatType: "mirror",
-                        delay: index * 0.15,
-                        ease: "easeInOut",
-                      }}
-                      style={{ height: `${height}%`, transformOrigin: "bottom" }}
-                      className="w-full rounded-t-sm bg-gradient-to-t from-emerald-500/30 to-emerald-400"
-                    />
-                  ))}
+                <div>
+                  <p className="text-[22px] font-semibold text-text">
+                    50+ businesses
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
+                    Studied and pitched
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-[22px] font-semibold text-text">
+                    Based in India
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
+                    Working worldwide
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Floating glass stat card */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              style={{ translateZ: 60 }}
-              className="absolute -bottom-6 -left-4 rounded-2xl border border-zinc-700 bg-zinc-900/80 p-3 shadow-xl backdrop-blur sm:-bottom-8 sm:-left-8 sm:p-5"
+            {/* SCROLL CUE */}
+            <div
+              className="absolute right-0 bottom-0 flex flex-col items-end gap-2"
+              style={{ opacity: "var(--cueOp)" }}
             >
-              <p className="text-[10px] uppercase tracking-wider text-zinc-500 sm:text-xs">
-                Response Time
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-dim">
+                Scroll to wake it
               </p>
-              <h3 className="mt-1 text-xl font-bold text-white sm:text-3xl">
-                &lt; 24 hrs
-              </h3>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
+              <motion.span
+                className="text-amber"
+                animate={isStatic ? undefined : { y: [0, 6, 0] }}
+                transition={{
+                  duration: 1.8,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                }}
+              >
+                ↓
+              </motion.span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

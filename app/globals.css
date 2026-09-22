@@ -14,9 +14,18 @@
 
   --radius: 24px;
 
+  --bg: #0a0a0b;
+  --surface: #0c0c0e;
+  --amber: #f5a524;
+  --amber-hover: #ffd48a;
+  --text: #edeae4;
+  --dim: #8b8880;
+  --dimmest: #77746e;
+  --hairline: #1c1c20;
+
   --font-heading: var(--font-space);
 
-  --font-body: var(--font-inter);
+  --font-body: var(--font-space);
 }
 
 @theme inline {
@@ -26,6 +35,15 @@
   --color-subtle: var(--subtle);
   --color-border: var(--border);
   --color-muted: var(--muted);
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-amber: var(--amber);
+  --color-amber-hover: var(--amber-hover);
+  --color-text: var(--text);
+  --color-dim: var(--dim);
+  --color-dimmest: var(--dimmest);
+  --color-hairline: var(--hairline);
 }
 
 html {
@@ -86,8 +104,40 @@ h6 {
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slideFade {
+  0%,
+  42% {
+    opacity: 0;
+  }
+  50%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-photo-b {
+  animation: slideFade 14s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero-photo-b {
+    animation: none;
+    opacity: 0;
   }
 }

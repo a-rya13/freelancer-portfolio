@@ -2,67 +2,41 @@ import { Project } from "@/types/project";
 
 export const homestay: Project = {
   slug: "homestay",
-  title: "Homestay Trails",
+  title: "HomeStay",
   status: "completed",
-  category: "Travel",
-  tagline:
-    "A discovery-first booking platform for independent homestays and local hosts.",
+  category: "Travel & Hospitality",
+  tagline: "A booking-ready website built to turn browsing into enquiries.",
   overview:
-    "Homestay Trails connects travelers with independent homestays that don't have the marketing reach of big listing platforms. The product needed strong search and discovery, trustworthy host profiles, and a simple trip-planning experience.",
-  client: "Homestay Trails",
+    "I designed and delivered a complete website for HomeStay, built to showcase the property and make enquiries and bookings easy for travellers.",
+  client: "HomeStay",
   industry: "Travel & Hospitality",
-  duration: "11 weeks",
-  role: "Full-Stack Developer & UI/UX Designer",
+  duration: "TODO",
+  role: "Web Designer & Developer",
   featured: true,
   technologies: [
     { name: "Next.js" },
     { name: "TypeScript" },
     { name: "Tailwind CSS" },
-    { name: "PostgreSQL" },
-    { name: "Mapbox" },
   ],
   cover: {
-    src: "/images/projects/homestay/cover.svg",
-    alt: "Homestay Trails search and discover cover",
-    label: "Cover",
+    src: "/images/projects/homestay/logo.jpeg",
+    alt: "HomeStay logo",
+    label: "Logo",
   },
-  gallery: [
-    {
-      src: "/images/projects/homestay/gallery-1.svg",
-      alt: "Search & Discover",
-      label: "Search & Discover",
-    },
-    {
-      src: "/images/projects/homestay/gallery-2.svg",
-      alt: "Listing Page",
-      label: "Listing Page",
-    },
-    {
-      src: "/images/projects/homestay/gallery-3.svg",
-      alt: "Trip Planner",
-      label: "Trip Planner",
-    },
-  ],
+  gallery: [],
   links: {
-    live: "https://example.com",
     caseStudy: "/work/homestay",
   },
   challenge:
-    "Travelers struggled to find and trust independent homestays compared to established platforms, and hosts had no easy way to showcase what made their listing unique.",
+    "HomeStay needed a website that did justice to the property and made it simple for travellers to enquire and book, rather than relying on listings elsewhere.",
   solution:
-    "Built a map-based search and discovery experience with rich host profiles, verified reviews, and a trip planner that lets travelers save and organize listings across a multi-stop itinerary.",
+    "I designed and built a complete site focused on showcasing the property clearly and getting travellers from browsing to enquiry with as little friction as possible.",
   outcome:
-    "Hosts on the platform saw a meaningful increase in direct bookings, and traveler engagement with listings improved thanks to the map-first discovery experience.",
+    "HomeStay now has a dedicated website that presents the property properly and gives travellers a direct way to enquire and book.",
   features: [
-    "Map-based search and discovery",
-    "Verified host profiles and reviews",
-    "Multi-stop trip planner and saved listings",
-    "Responsive listing pages with rich media",
-    "Host dashboard for managing availability",
+    "Property showcase & gallery",
+    "Enquiry & booking-ready contact flow",
+    "Responsive design",
   ],
-  metrics: [
-    { label: "Host Bookings", value: "+40%" },
-    { label: "Search-to-View Rate", value: "+22%" },
-    { label: "Return Visitors", value: "+35%" },
-  ],
+  metrics: [],
 };

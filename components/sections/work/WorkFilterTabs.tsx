@@ -27,16 +27,16 @@ export default function WorkFilterTabs({ projects }: WorkFilterTabsProps) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-[10px]">
         {filters.map((filter) => (
           <button
             key={filter.value}
             type="button"
             onClick={() => setActive(filter.value)}
-            className={`rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
+            className={`rounded-full border px-[22px] py-[11px] font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
               active === filter.value
-                ? "border-zinc-900 bg-zinc-900 text-white"
-                : "border-border bg-card text-zinc-600 hover:border-zinc-400"
+                ? "border-amber bg-amber text-[#100C04]"
+                : "border-[#26262B] text-[#B9B5AD] hover:border-dim hover:text-text"
             }`}
           >
             {filter.label}
@@ -45,13 +45,13 @@ export default function WorkFilterTabs({ projects }: WorkFilterTabsProps) {
       </div>
 
       {filteredProjects.length > 0 ? (
-        <div className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
+        <div className="mt-[40px] grid grid-cols-[repeat(auto-fit,minmax(330px,1fr))] gap-[28px]">
           {filteredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       ) : (
-        <p className="mt-10 text-zinc-500">
+        <p className="mt-[40px] text-dim">
           Nothing here yet — check back soon.
         </p>
       )}

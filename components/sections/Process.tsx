@@ -57,33 +57,32 @@ const fadeUp = {
 
 export default function Process() {
   return (
-    <section id="process" className="py-20 sm:py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
+    <section id="process" className="bg-surface px-5 pt-[86px] pb-[96px] text-text sm:px-6 md:px-[40px]">
+      <div className="mx-auto max-w-[1560px]">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-3xl"
+          className="mb-[44px] max-w-[720px]"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-zinc-500">
+          <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
+            <span className="h-px w-[26px] bg-amber" />
             Process
-          </p>
+          </div>
 
-          <h2 className="mt-5 font-heading text-4xl font-semibold leading-tight text-zinc-950 sm:text-5xl md:text-6xl">
-            A process designed
-            <br />
-            for clarity and results.
+          <h2 className="font-heading mt-6 text-[clamp(28px,3vw,40px)] font-semibold tracking-[-0.03em]">
+            A process designed for clarity and results.
           </h2>
 
-          <p className="mt-6 text-base leading-7 text-zinc-600 sm:mt-8 sm:text-lg sm:leading-8">
-            Every project follows a structured workflow that keeps communication
-            transparent, reduces uncertainty, and delivers products that are
-            built to scale.
+          <p className="mt-4 text-[15px] leading-[1.6] text-dim">
+            Every project follows a structured workflow that keeps
+            communication transparent, reduces uncertainty, and delivers
+            products that are built to scale.
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-6 sm:mt-16 sm:gap-8 md:mt-24 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[24px]">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -94,17 +93,17 @@ export default function Process() {
               transition={{
                 delay: index * 0.08,
               }}
-              className="group rounded-[24px] border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-900 hover:shadow-xl sm:rounded-[32px] sm:p-8 md:p-10"
+              className="border border-hairline bg-bg p-[26px] transition-colors hover:border-dim"
             >
-              <span className="text-sm font-semibold tracking-[0.2em] text-zinc-400">
+              <span className="font-mono text-[11px] text-amber">
                 {step.number}
               </span>
 
-              <h3 className="mt-4 text-xl font-semibold text-zinc-950 sm:mt-5 sm:text-2xl">
+              <h3 className="font-heading mt-4 text-[18px] font-medium text-text">
                 {step.title}
               </h3>
 
-              <p className="mt-4 leading-7 text-zinc-600 sm:mt-5 sm:leading-8">
+              <p className="mt-3 text-[14px] leading-[1.5] text-dim">
                 {step.description}
               </p>
             </motion.div>

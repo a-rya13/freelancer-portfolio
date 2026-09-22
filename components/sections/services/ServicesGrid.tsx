@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
 
 import { services } from "@/data/services";
 
@@ -16,7 +15,7 @@ const fadeUp = {
 
 export default function ServicesGrid() {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 sm:gap-8">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[24px]">
       {services.map((service, index) => {
         const Icon = service.icon;
 
@@ -28,35 +27,31 @@ export default function ServicesGrid() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: (index % 2) * 0.1 }}
-            className="rounded-[24px] border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-900 hover:shadow-xl sm:rounded-[32px] sm:p-8"
+            className="border border-hairline bg-surface p-[30px] transition-colors hover:border-dim"
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-950 text-white sm:h-14 sm:w-14">
-              <Icon size={24} />
+            <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-hairline text-amber">
+              <Icon size={22} />
             </div>
 
-            <h3 className="mt-6 text-xl font-semibold text-zinc-950 sm:mt-8 sm:text-2xl">
+            <h3 className="font-heading mt-6 text-[19px] font-medium text-text">
               {service.title}
             </h3>
 
-            <p className="mt-4 leading-7 text-zinc-600 sm:mt-5 sm:leading-8">
+            <p className="mt-3 text-[14px] leading-[1.55] text-dim">
               {service.description}
             </p>
 
-            <ul className="mt-6 flex flex-col gap-2.5 sm:mt-8">
+            <div className="mt-6 flex flex-col gap-[10px] border-t border-hairline pt-6">
               {service.highlights.map((highlight) => (
-                <li
+                <div
                   key={highlight}
-                  className="flex items-start gap-2.5 text-sm text-zinc-600"
+                  className="flex items-start gap-[10px] text-[13px] leading-[1.5] text-[#C9C5BE]"
                 >
-                  <Check
-                    size={16}
-                    className="mt-0.5 shrink-0 text-zinc-900"
-                    strokeWidth={2.5}
-                  />
+                  <span className="mt-[2px] text-[10px] text-amber">◆</span>
                   {highlight}
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </motion.div>
         );
       })}

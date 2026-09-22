@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { Project } from "@/types/project";
@@ -27,43 +26,44 @@ const fadeUp = {
 
 export default function CaseStudyHero({ project }: Props) {
   return (
-    <section className="pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
+    <section className="bg-bg px-5 pt-[150px] pb-[70px] text-text sm:px-6 md:px-[40px]">
+      <div className="mx-auto max-w-[1560px]">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl"
+          className="max-w-[900px]"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-zinc-500">
+          <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
+            <span className="h-px w-[26px] bg-amber" />
             {project.category}
-          </p>
+          </div>
 
-          <h1 className="mt-5 font-heading text-4xl font-semibold leading-tight text-zinc-950 sm:mt-6 sm:text-5xl md:text-7xl">
+          <h1 className="font-heading mt-6 text-[clamp(32px,5vw,68px)] font-semibold leading-[1.05] tracking-[-0.035em]">
             {project.title}
           </h1>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-600 sm:mt-8 sm:text-xl sm:leading-9">
+          <p className="mt-6 max-w-[640px] text-[16px] leading-[1.6] text-dim">
             {project.tagline}
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
+          <div className="mt-8 flex flex-wrap items-center gap-[16px]">
             {project.links.live && (
               <Link
                 href={project.links.live}
                 target="_blank"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 font-medium text-white transition hover:bg-zinc-800"
+                rel="noopener noreferrer"
+                className="rounded-full bg-amber px-[26px] py-[14px] font-mono text-[12px] font-bold uppercase tracking-[0.14em] text-[#100C04] transition-colors hover:bg-amber-hover"
               >
-                Visit Website
-                <ArrowUpRight size={18} />
+                Visit website
               </Link>
             )}
 
             <Link
-              href="/#work"
-              className="inline-flex items-center justify-center rounded-full border border-zinc-300 px-6 py-3 font-medium transition hover:border-black"
+              href="/work"
+              className="rounded-full border border-[#26262B] px-[26px] py-[14px] font-mono text-[12px] uppercase tracking-[0.14em] text-[#B9B5AD] transition-colors hover:border-dim hover:text-text"
             >
-              Back to Projects
+              Back to work
             </Link>
           </div>
         </motion.div>
@@ -72,26 +72,26 @@ export default function CaseStudyHero({ project }: Props) {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          transition={{
-            delay: 0.2,
-          }}
-          className="mt-12 overflow-hidden rounded-[24px] border border-border bg-card shadow-[0_30px_90px_rgba(0,0,0,0.08)] sm:mt-16 sm:rounded-[36px] md:mt-20"
+          transition={{ delay: 0.15 }}
+          className="mt-[56px] overflow-hidden border border-hairline bg-surface"
         >
-          <div className="flex items-center gap-2 border-b border-border bg-subtle px-5 py-4">
-            <span className="h-3 w-3 rounded-full bg-red-400" />
-            <span className="h-3 w-3 rounded-full bg-yellow-400" />
-            <span className="h-3 w-3 rounded-full bg-green-400" />
+          <div className="flex items-center gap-2 border-b border-hairline bg-surface px-5 py-4">
+            <span className="h-3 w-3 rounded-full bg-dimmest" />
+            <span className="h-3 w-3 rounded-full bg-dimmest" />
+            <span className="h-3 w-3 rounded-full bg-dimmest" />
           </div>
 
           <div className="p-3 sm:p-6">
-            <Image
-              src={project.cover.src}
-              alt={project.cover.alt}
-              width={1600}
-              height={900}
-              className="w-full rounded-2xl border border-border"
-              priority
-            />
+            <div className="relative h-[220px] w-full sm:h-[300px] md:h-[360px]">
+              <Image
+                src={project.cover.src}
+                alt={project.cover.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 1560px"
+                className="border border-hairline object-contain"
+                priority
+              />
+            </div>
           </div>
         </motion.div>
       </div>

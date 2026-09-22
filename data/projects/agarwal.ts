@@ -3,66 +3,43 @@ import { Project } from "@/types/project";
 export const agarwal: Project = {
   slug: "agarwal",
   title: "Agarwal Gift & Greetings",
-  status: "completed",
-  category: "Retail / E-Commerce / Wholesale",
+  status: "ongoing",
+  category: "Retail & Gifting",
   tagline:
-    "A premium home & interior decor storefront that brings an in-store showroom experience online.",
+    "A connected storefront, social presence, and ad system for a gifting retailer.",
   overview:
-    "Agarwal Gift & Greetings needed a digital storefront that matched the craftsmanship and trust built over decades in-store. We designed and built a fast, catalog-driven e-commerce experience with rich product detail pages, wishlist, and a streamlined checkout.",
+    "I developed and maintain the website for Agarwal Gift & Greetings, giving the business a proper online storefront. Alongside that, I manage their social media and run Meta ads to drive discovery and sales — the site, content, and advertising work together as one connected system rather than three separate efforts.",
   client: "Agarwal Gift & Greetings",
-  industry: "Retail & E-Commerce",
-  duration: "8 weeks",
-  role: "Full-Stack Developer & UI/UX Designer",
+  industry: "Retail & Gifting",
+  duration: "Ongoing retainer",
+  role: "Web Developer, Social Media & Meta Ads Manager",
   featured: true,
   technologies: [
     { name: "Next.js" },
     { name: "TypeScript" },
     { name: "Tailwind CSS" },
-    { name: "Stripe" },
-    { name: "Sanity CMS" },
+    { name: "Meta Ads Manager" },
+    { name: "Social Media Management" },
   ],
   cover: {
-    src: "/images/projects/agarwal/cover.svg",
-    alt: "Agarwal Gift & Greetings storefront cover",
-    label: "Cover",
+    src: "/images/projects/agarwal/logo.jpeg",
+    alt: "Agarwal Gift & Greetings logo",
+    label: "Logo",
   },
-  gallery: [
-    {
-      src: "/images/projects/agarwal/gallery-1.svg",
-      alt: "Storefront",
-      label: "Storefront",
-    },
-    {
-      src: "/images/projects/agarwal/gallery-2.svg",
-      alt: "Product Detail",
-      label: "Product Detail",
-    },
-    {
-      src: "/images/projects/agarwal/gallery-3.svg",
-      alt: "Checkout",
-      label: "Checkout",
-    },
-  ],
+  gallery: [],
   links: {
-    live: "https://example.com",
     caseStudy: "/work/agarwal",
   },
   challenge:
-    "There was no existing site, brochure page with no online catalog, forcing customers to visit in-store or message on WhatsApp to check product availability and pricing.",
+    "Agarwal Gift & Greetings needed a proper online storefront and a consistent way to reach new customers — not just a website, but content and advertising working in step with it.",
   solution:
-    "Built a full product catalog with categories, filters, and detailed product pages featuring high-resolution imagery, and integrated secure checkout with Stripe alongside a lightweight CMS so the team could manage inventory without developer help.",
+    "I built and maintain the site, manage their social media, and run Meta ads — treating the storefront, content, and ad spend as one connected system instead of three separate efforts.",
   outcome:
-    "The new storefront reduced manual WhatsApp inquiries significantly and opened a new direct online sales channel within the first month of launch.",
+    "The business now has a single, connected digital presence handling discovery, storytelling, and sales in one place.",
   features: [
-    "Searchable product catalog with category and price filters",
-    "Rich product detail pages with zoomable imagery",
-    "Secure checkout with Razorpay payments",
-    "CMS-managed inventory and pricing",
-    "Wishlist and saved-items experience",
+    "Website design, development & ongoing maintenance",
+    "Social media management",
+    "Meta ads campaigns for discovery & sales",
   ],
-  metrics: [
-    { label: "Faster Page Loads", value: "3.2x" },
-    { label: "Online Inquiries", value: "-45%" },
-    { label: "Conversion Rate", value: "+18%" },
-  ],
+  metrics: [],
 };

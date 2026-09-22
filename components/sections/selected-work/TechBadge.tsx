@@ -4,25 +4,7 @@ interface TechBadgeProps {
 
 export default function TechBadge({ name }: TechBadgeProps) {
   return (
-    <span
-      className="
-      inline-flex
-      items-center
-      rounded-full
-      border
-      border-border
-      bg-card
-      px-3
-      py-1.5
-      text-sm
-      font-medium
-      text-zinc-700
-      transition-colors
-      duration-300
-      hover:border-zinc-900
-      hover:text-zinc-900
-    "
-    >
+    <span className="inline-flex items-center rounded-full border border-[#23232A] px-[12px] py-[6px] font-mono text-[10px] uppercase tracking-[0.12em] text-dim transition-colors hover:border-dim hover:text-text">
       {name}
     </span>
   );
