@@ -5,18 +5,19 @@ export const CONTACT = {
   emailHref: "mailto:aryaagarwal20031@gmail.com",
   phone: "+91 9580656056",
   phoneHref: "tel:+919580656056",
+  whatsapp: "+91 8400046056",
   whatsappHref: "https://wa.me/918400046056",
 } as const;
 
-export const SOCIAL_LINKS = [
-  { name: "Instagram", href: "https://instagram.com" },
-  { name: "LinkedIn", href: "https://linkedin.com" },
-  { name: "X / Twitter", href: "https://x.com" },
-  { name: "GitHub", href: "https://github.com" },
-] as const;
+// Entries with an empty href are hidden in the footer — fill in each profile URL to show it.
+export const SOCIAL_LINKS: { name: string; href: string }[] = [
+  { name: "Instagram", href: "" },
+  { name: "LinkedIn", href: "" },
+  { name: "GitHub", href: "" },
+];
 
 export const AVAILABILITY = {
-  status: "Taking projects that needs to grow",
+  status: "Taking on projects that need to grow",
   location: "Based in Lucknow, India but working worldwide",
   replyTime: "Replies within a day",
 } as const;

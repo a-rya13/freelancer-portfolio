@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 
 import { projects } from "@/data/projects";
+import { hasValue } from "@/lib/utils";
 
 const orderedProjects = projects.filter((project) => project.featured);
 
@@ -99,7 +100,7 @@ export default function SelectedWork() {
                           : "opacity-0"
                       }`}
                     />
-                    {project.duration}
+                    {hasValue(project.duration) && project.duration}
                   </span>
                 </button>
               );
@@ -111,8 +112,12 @@ export default function SelectedWork() {
             <div className="flex items-center gap-[12px] font-mono text-[10px] uppercase tracking-[0.2em]">
               <span className="h-px w-[20px] bg-amber" />
               <span className="text-amber">{active.status}</span>
-              <span className="text-[#4A4A52]">/</span>
-              <span className="text-dimmest">{active.duration}</span>
+              {hasValue(active.duration) && (
+                <>
+                  <span className="text-[#4A4A52]">/</span>
+                  <span className="text-dimmest">{active.duration}</span>
+                </>
+              )}
             </div>
 
             <h3 className="font-heading mt-[20px] text-[clamp(24px,2.6vw,34px)] font-semibold tracking-[-0.03em]">

@@ -32,8 +32,20 @@ export default function CaseStudyHero({ project }: Props) {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="max-w-[900px]"
+          className="flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-10"
         >
+          <div className="relative h-[110px] w-[110px] shrink-0 overflow-hidden border border-hairline bg-surface sm:h-[160px] sm:w-[160px]">
+            <Image
+              src={project.cover.src}
+              alt={project.cover.alt}
+              fill
+              sizes="160px"
+              className="object-contain p-3"
+              priority
+            />
+          </div>
+
+          <div className="max-w-[900px]">
           <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-amber">
             <span className="h-px w-[26px] bg-amber" />
             {project.category}
@@ -66,32 +78,6 @@ export default function CaseStudyHero({ project }: Props) {
               Back to work
             </Link>
           </div>
-        </motion.div>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.15 }}
-          className="mt-[56px] overflow-hidden border border-hairline bg-surface"
-        >
-          <div className="flex items-center gap-2 border-b border-hairline bg-surface px-5 py-4">
-            <span className="h-3 w-3 rounded-full bg-dimmest" />
-            <span className="h-3 w-3 rounded-full bg-dimmest" />
-            <span className="h-3 w-3 rounded-full bg-dimmest" />
-          </div>
-
-          <div className="p-3 sm:p-6">
-            <div className="relative h-[220px] w-full sm:h-[300px] md:h-[360px]">
-              <Image
-                src={project.cover.src}
-                alt={project.cover.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 1560px"
-                className="border border-hairline object-contain"
-                priority
-              />
-            </div>
           </div>
         </motion.div>
       </div>

@@ -185,9 +185,9 @@ export default function Hero({ staticHero = false }: HeroProps) {
                 The growth stack, uncovered
               </p>
 
-              <h1 className="font-heading mt-5 text-[clamp(40px,5.6vw,76px)] font-semibold leading-[0.98] tracking-[-0.035em] text-text">
+              <h2 className="font-heading mt-5 text-[clamp(40px,5.6vw,76px)] font-semibold leading-[0.98] tracking-[-0.035em] text-text">
                 Research. Rank. <span className="text-amber">Results.</span>
-              </h1>
+              </h2>
 
               <div className="pointer-events-auto mt-[30px] flex flex-wrap items-center gap-[30px]">
                 <a
@@ -199,7 +199,7 @@ export default function Hero({ staticHero = false }: HeroProps) {
 
                 <div>
                   <p className="text-[22px] font-semibold text-text">
-                    10+ projects
+                    15+ projects
                   </p>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
                     Delivered end to end
@@ -208,7 +208,7 @@ export default function Hero({ staticHero = false }: HeroProps) {
 
                 <div>
                   <p className="text-[22px] font-semibold text-text">
-                    50+ businesses
+                    100+ businesses
                   </p>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
                     Studied and pitched

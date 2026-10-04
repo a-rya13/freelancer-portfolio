@@ -8,6 +8,7 @@ import { lalitLandAndHomes } from "./lalit-land-and-homes";
 import { pawpupCafe } from "./pawpup-cafe";
 import { homestay } from "./homestay";
 import { templateWebsite } from "./template-website";
+import { uAndMeProductions } from "./u-and-me-productions";
 
 export const projects: Project[] = [
   agarwal,
@@ -18,4 +19,5 @@ export const projects: Project[] = [
   pawpupCafe,
   homestay,
   templateWebsite,
+  uAndMeProductions,
 ];

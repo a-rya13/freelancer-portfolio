@@ -89,7 +89,7 @@ export default function About() {
             <div className="mt-10 flex flex-wrap items-center gap-[30px] border-t border-hairline pt-8">
               <div>
                 <p className="text-[22px] font-semibold text-text">
-                  10+ projects
+                  15+ projects
                 </p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
                   Delivered end to end
@@ -98,7 +98,7 @@ export default function About() {
 
               <div>
                 <p className="text-[22px] font-semibold text-text">
-                  50+ businesses
+                  100+ businesses
                 </p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-dim">
                   Studied and pitched

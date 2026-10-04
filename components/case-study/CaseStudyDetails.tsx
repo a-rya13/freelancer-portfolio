@@ -1,4 +1,5 @@
 import { Project } from "@/types/project";
+import { hasValue } from "@/lib/utils";
 
 import TechBadge from "@/components/sections/selected-work/TechBadge";
 import ProjectGallery from "@/components/sections/selected-work/ProjectGallery";
@@ -17,8 +18,12 @@ export default function CaseStudyDetails({ project }: Props) {
             <div className="flex items-center gap-[12px] font-mono text-[10px] uppercase tracking-[0.2em]">
               <span className="h-px w-[20px] bg-amber" />
               <span className="text-amber">{project.status}</span>
-              <span className="text-[#4A4A52]">/</span>
-              <span className="text-dimmest">{project.duration}</span>
+              {hasValue(project.duration) && (
+                <>
+                  <span className="text-[#4A4A52]">/</span>
+                  <span className="text-dimmest">{project.duration}</span>
+                </>
+              )}
             </div>
 
             <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-dimmest">

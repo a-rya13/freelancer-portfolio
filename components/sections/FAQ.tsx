@@ -4,13 +4,28 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
-import { faqs } from "@/data/faq";
+import { faqs as allFaqs, type FAQItem } from "@/data/faq";
 
-export default function FAQ() {
+export default function FAQ({ items = allFaqs }: { items?: FAQItem[] }) {
+  const faqs = items;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section id="faq" className="bg-surface px-5 pt-[86px] pb-[96px] text-text sm:px-6 md:px-[40px]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: { "@type": "Answer", text: item.answer },
+            })),
+          }),
+        }}
+      />
       <div className="mx-auto max-w-[1560px]">
         <div className="mb-[44px] flex flex-wrap items-baseline justify-between gap-4">
           <h2 className="font-heading text-[clamp(28px,3vw,40px)] font-semibold tracking-[-0.03em]">

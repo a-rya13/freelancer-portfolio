@@ -5,39 +5,27 @@ import { motion } from "framer-motion";
 const steps = [
   {
     number: "01",
-    title: "Discover",
+    title: "Research",
     description:
-      "Understanding your business, users, and goals before writing a single line of code.",
+      "Reviewing your current online presence, your customers, and your competitors before planning anything.",
   },
   {
     number: "02",
-    title: "Strategy",
+    title: "Plan",
     description:
-      "Planning the product architecture, user journeys, and technical approach to ensure long-term scalability.",
+      "A clear plan with a clear price, so your site, ads and content follow one strategy.",
   },
   {
     number: "03",
-    title: "Design",
+    title: "Launch",
     description:
-      "Crafting clean, intuitive interfaces that balance aesthetics with usability and conversion.",
+      "Getting the website, ads, search and content live and tested so everything performs reliably.",
   },
   {
     number: "04",
-    title: "Develop",
+    title: "Report & improve",
     description:
-      "Building fast, responsive, and scalable applications using modern technologies and best practices.",
-  },
-  {
-    number: "05",
-    title: "Launch",
-    description:
-      "Deploying, testing, optimizing, and ensuring everything performs reliably in production.",
-  },
-  {
-    number: "06",
-    title: "Improve",
-    description:
-      "Iterating based on feedback, analytics, and evolving business requirements to keep the product growing.",
+      "Monthly reports on rankings, cost per lead and customers, then improving based on what the numbers show.",
   },
 ];
 
@@ -76,9 +64,8 @@ export default function Process() {
           </h2>
 
           <p className="mt-4 text-[15px] leading-[1.6] text-dim">
-            Every project follows a structured workflow that keeps
-            communication transparent, reduces uncertainty, and delivers
-            products that are built to scale.
+            Every engagement follows the same four steps, so you always know
+            what is being done and what it is doing for your business.
           </p>
         </motion.div>
 

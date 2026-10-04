@@ -10,7 +10,7 @@ export const homestay: Project = {
     "I designed and delivered a complete website for HomeStay, built to showcase the property and make enquiries and bookings easy for travellers.",
   client: "HomeStay",
   industry: "Travel & Hospitality",
-  duration: "TODO",
+  duration: "",
   role: "Web Designer & Developer",
   featured: true,
   technologies: [

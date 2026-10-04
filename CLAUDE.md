@@ -32,7 +32,7 @@ This is a multi-page freelancer portfolio site (Next.js App Router) built as a p
 
 Content lives in typed data files under `data/`, not a CMS/database — editing content means editing these files directly:
 
-- **`data/projects/`** — each project is a hand-authored `Project` object (typed by `types/project.ts`) in its own file (`agarwal.ts`, `amari.ts`, `cms.ts`, `crm.ts`, `homestay.ts`), aggregated into a single `projects` array in `data/projects/index.ts`. This array is the single source of truth consumed by the homepage's "Selected Work" section (filtered by `featured: true`), `/work`, and the case study route. **To add/edit a project, add or edit a file here and register it in `index.ts`.**
+- **`data/projects/`** — each project is a hand-authored `Project` object (typed by `types/project.ts`) in its own file (e.g. `agarwal.ts`, `amari.ts`, `homestay.ts`, `pawpup-cafe.ts`, `template-website.ts`), aggregated into a single `projects` array in `data/projects/index.ts`. This array is the single source of truth consumed by the homepage's "Selected Work" section (filtered by `featured: true`), `/work`, and the case study route. **To add/edit a project, add or edit a file here and register it in `index.ts`.**
 - **`data/services.ts`**, **`data/capabilities.ts`**, **`data/faq.ts`** — similarly typed arrays feeding the Services/Capabilities/FAQ sections.
 - **`constants/contact.ts`** — `CONTACT` (email/phone/WhatsApp links), `SOCIAL_LINKS`, `AVAILABILITY` — used by `Footer` and `FloatingWhatsApp`. Values are still placeholders (see TODO comments in the file).
 

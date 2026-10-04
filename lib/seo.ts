@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 
-// TODO: replace with the real production domain once the site is deployed/hosted.
-export const SITE_URL = "https://aryaagarwal.com";
+// Single source for every absolute URL (canonical, og:url, og:image, sitemap, robots, JSON-LD).
+// Override per environment with NEXT_PUBLIC_SITE_URL.
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://arya.oneroofventures.com"
+).replace(/\/$/, "");
 
 export const SITE_NAME = "Arya Agarwal";
 
 export const SITE_DESCRIPTION =
-  "I help small businesses grow with fast, conversion-focused websites, CRM solutions, UI/UX design, and growth systems — built to get you responding to customers quicker.";
+  "Digital growth partner for small businesses. SEO and AEO, Google and Meta ads, content and websites, planned and run by one person from Lucknow.";
 
 const DEFAULT_IMAGE = {
   url: `${SITE_URL}/og-image.png`,
@@ -27,6 +30,7 @@ export function pageMetadata({
   image = DEFAULT_IMAGE,
 }: PageMetadataInput): Metadata {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+  const fullTitle = `${title} | ${SITE_NAME}`;
 
   return {
     title,
@@ -35,7 +39,7 @@ export function pageMetadata({
       canonical: path,
     },
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url,
       siteName: SITE_NAME,
@@ -45,7 +49,7 @@ export function pageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
       images: [image.url],
     },

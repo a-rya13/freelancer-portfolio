@@ -42,6 +42,8 @@ function FooterLink({
 }
 
 export default function Footer() {
+  const socials = SOCIAL_LINKS.filter((social) => social.href);
+
   return (
     <footer
       id="contact"
@@ -86,20 +88,25 @@ export default function Footer() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-x-[40px] gap-y-[44px] py-[56px]">
           <FooterColumn heading="Direct">
             <FooterLink href={CONTACT.emailHref}>{CONTACT.email}</FooterLink>
-            <FooterLink href={CONTACT.phoneHref}>{CONTACT.phone}</FooterLink>
+            <FooterLink href={CONTACT.phoneHref}>Call: {CONTACT.phone}</FooterLink>
+            <FooterLink href={CONTACT.whatsappHref}>
+              WhatsApp: {CONTACT.whatsapp}
+            </FooterLink>
           </FooterColumn>
 
-          <FooterColumn heading="Elsewhere">
-            {SOCIAL_LINKS.map((social) => (
-              <FooterLink key={social.name} href={social.href}>
-                {social.name}
-              </FooterLink>
-            ))}
-          </FooterColumn>
+          {socials.length > 0 && (
+            <FooterColumn heading="Elsewhere">
+              {socials.map((social) => (
+                <FooterLink key={social.name} href={social.href}>
+                  {social.name}
+                </FooterLink>
+              ))}
+            </FooterColumn>
+          )}
 
           <FooterColumn heading="Work with me on">
             {SERVICE_LINKS.map((service) => (
-              <FooterLink key={service} href="#services">
+              <FooterLink key={service} href="/services">
                 {service}
               </FooterLink>
             ))}

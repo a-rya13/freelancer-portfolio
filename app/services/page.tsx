@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FAQ from "@/components/sections/FAQ";
 import Process from "@/components/sections/Process";
 import ServicesGrid from "@/components/sections/services/ServicesGrid";
+import { SERVICES_FAQ_IDS, pickFaqs } from "@/data/faq";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services",
+  title: "Meta Ads, SEO & Websites in Lucknow and India",
   description:
-    "Every service I offer small businesses — web design and development, e-commerce, CRM solutions, UI/UX design, AI and automation, and growth marketing.",
+    "Meta ads expert in Lucknow and across India. SEO and AEO, Google and Meta ads, content, and the websites that turn attention into customers — run by one person for small businesses.",
   path: "/services",
 });
 
@@ -31,9 +33,9 @@ export default function ServicesPage() {
             </h1>
 
             <p className="mt-6 max-w-[640px] text-[15px] leading-[1.6] text-dim">
-              From strategy and design to development, automation, and growth
-              marketing — here&apos;s everything I do for small businesses,
-              end to end.
+              Search, paid ads and content that bring customers in — plus the
+              website that turns them into enquiries. Meta ads expert based in
+              Lucknow, working with small businesses across India.
             </p>
           </div>
         </section>
@@ -45,6 +47,7 @@ export default function ServicesPage() {
         </section>
 
         <Process />
+        <FAQ items={pickFaqs(SERVICES_FAQ_IDS)} />
       </main>
 
       <Footer />
